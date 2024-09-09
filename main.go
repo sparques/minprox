@@ -79,7 +79,7 @@ func (p *proxy) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(clientConn, "HTTP/1.1 200 Connection Established\n\n")
 
 		go io.Copy(clientConn, sock)
-		go io.Copy(sock, clientConn)
+		io.Copy(sock, clientConn)
 
 		return
 	}
